@@ -1,0 +1,144 @@
+<div class="modal-content">
+    <div class="transbox-modal">
+        <div><span>数据库管理/</span><span class="transbox-blue-color">新增配件</span></div>
+        <hr style="border : 1px dashed #e7e7e7;"/>
+        <div class="row">
+            <!-- first row -->
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 col-md-2 col-lg-2 control-label">配件型号：</label>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <input required="true" ng-model="data.selectedFitting.model" type="text"
+                                   class="form-control" placeholder="">
+                        </div>
+                        <label class="col-sm-2 col-md-2 col-lg-2 control-label">配件编码：</label>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <input required="true" ng-model="data.selectedFitting.fittingNumber"
+                                   type="text" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- senceod row -->
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 col-md-2 col-lg-2 control-label">数量：</label>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <input required="true" ng-model="data.selectedFitting.quantity"
+                                   type="number"
+                                   class="form-control" placeholder="">
+                        </div>
+                        <label class="col-sm-2 col-md-2 col-lg-2 control-label">状态：</label>
+                        <div class="btn-group col-sm-4 col-md-4 col-lg-4" uib-dropdown>
+                            <input ng-model="data.selectedFitting.status" readonly="readonly"
+                                   disabled="disabled" id="newFittingStatus" type="text"
+                                   class="transbox-dropdown-input form-control"
+                                   placeholder="请选择采购状态"/>
+                            <button type="button" uib-dropdown-toggle
+                                    class="transbox-dropdown-btn-right">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu transbox-dropdown-menu" uib-dropdown-menu
+                                role="menu" aria-labelledby="newFittingStatus">
+                                <li ng-click="pickDetailFittingStatus($index,title)"
+                                    ng-repeat="title in data.statusOptions" role="menuitem"><a
+                                        href="">{{title}}</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <!-- third row -->
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 col-md-2 col-lg-2 control-label">入库日期：</label>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <input ng-click="toggleDetailDatepicker2()"
+                                   uib-datepicker-popup="{{data.detailDate2.format}}"
+                                   is-open="data.detailDate2.isOpen"
+                                   datepicker-options="data.detailDate2.options"
+                                   clear-text="清除"
+                                   current-text="今天"
+                                   close-text="关闭"
+                                   popup-placement="right"
+                                   alt-input-formats="data.detailDate2.altInputFormats"
+                                   ng-model="data.selectedFitting.storeDate"
+                                   ng-model-options="data.detailDate2.modelOptions"
+                                   type="text"
+                                   class="form-control"
+                                   id="exampleInputtext2"
+                                   readonly
+                                   placeholder="">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <!-- four row-->
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 col-md-2 col-lg-2 control-label">购买单位：</label>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <input required="true" ng-model="data.selectedFitting.buyFrom"
+                                   type="text"
+                                   class="form-control" id="inputEmail3" placeholder="可选">
+                        </div>
+
+                        <label class="col-sm-2 col-md-2 col-lg-2 control-label">购买日期：</label>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <input ng-click="toggleDetailDatepicker()"
+                                   uib-datepicker-popup="{{data.detailDate.format}}"
+                                   is-open="data.detailDate.isOpen"
+                                   datepicker-options="data.detailDate.options"
+                                   clear-text="清除"
+                                   current-text="今天"
+                                   close-text="关闭"
+                                   popup-placement="left"
+                                   alt-input-formats="data.detailDate.altInputFormats"
+                                   ng-model="data.selectedFitting.buyAt"
+                                   ng-model-options="data.detailDate.modelOptions"
+                                   type="text"
+                                   class="form-control"
+                                   readonly
+                                   placeholder="可选">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <!-- five row -->
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 col-md-2 col-lg-2 control-label">备注：</label>
+                        <div class="col-sm-10 col-md-10 col-lg-10">
+              <textarea required="true" ng-model="data.selectedFitting.remark" type="text"
+                        class="form-control" placeholder="可选">
+              </textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- btn row -->
+            <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+                <button ng-click="$dismiss()"
+                        class="btn btn-default transbox-btn-size transbox-btn-bordered">取消
+                </button>
+                <button ng-click="saveDetailFittingInfo()" type="submit"
+                        class="btn btn-default transbox-btn-size transbox-btn-blue"
+                        style="margin-left: 40px;">保存
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

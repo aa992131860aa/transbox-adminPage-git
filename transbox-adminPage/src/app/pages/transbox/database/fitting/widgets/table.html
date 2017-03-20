@@ -1,0 +1,62 @@
+<table st-pipe="getFittings" st-table="data.pageData.fittings" class="table table-bordered table-hover transfer-table">
+    <thead>
+        <tr class="common-table-thead">
+            <th>
+                <input ng-click="switchSelectAll()" type="checkbox">
+            </th>
+            <th ng-click="sortBy('model')">配件型号
+                <span class="sortorder" ng-show="propertyName === 'model'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('fittingNumber')">配件编码
+                <span class="sortorder" ng-show="propertyName === 'fittingNumber'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('quantity')">数量
+                <span class="sortorder" ng-show="propertyName === 'quantity'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('status')">状态
+                <span class="sortorder" ng-show="propertyName === 'status'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('storeDate')">入库时间
+                <span class="sortorder" ng-show="propertyName === 'storeDate'" ng-class="{reverse: reverse}"></span>
+            </th>
+
+            <th ng-click="sortBy('buyAt')">购买日期
+                <span class="sortorder" ng-show="propertyName === 'buyAt'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('buyFrom')">购买单位
+                <span class="sortorder" ng-show="propertyName === 'buyFrom'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('remark')">备注
+                <span class="sortorder" ng-show="propertyName === 'remark'" ng-class="{reverse: reverse}"></span>
+            </th>
+        </tr>
+    </thead>
+    <tbody ng-show="!data.pagination.isLoading">
+        <tr ng-click="pickFitting(fitting)" ng-repeat="fitting in data.pageData.fittings | orderBy:propertyName:reverse" style="cursor: pointer;">
+            <td ng-click="checkFitting($event, $index)">
+                <input ng-model="fitting.checked" type="checkbox">
+            </td>
+            <td><span ng-bind="fitting.model"></span></td>
+            <td><span ng-bind="fitting.fittingNumber"></span></td>
+            <td><span ng-bind="fitting.quantity"></span></td>
+            <td><span ng-bind="fitting.status"></span></td>
+            <td><span ng-bind="getShowDate(fitting.storeDate)"></span></td>
+
+            <td><span ng-bind="getShowDate(fitting.buyAt)"></span></td>
+            <td><span ng-bind="fitting.buyFrom"></span> </td>
+            <td><span ng-bind="fitting.remark"></span></td>
+        </tr>
+    </tbody>
+    <tbody ng-show="data.pagination.isLoading">
+    <tr>
+        <td colspan="7" class="text-center">加载中 ... </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td id="fittingTablePagination" colspan="7" class="text-center" st-pagination="" st-items-by-page="data.pagination.maxSize" st-displayed-pages="data.pageData.displayedPages">
+        </td>
+    </tr>
+    </tfoot>
+</table>
+</div>

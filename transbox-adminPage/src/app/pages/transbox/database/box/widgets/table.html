@@ -1,0 +1,58 @@
+<table st-pipe="getBoxes" st-table="data.pageData.boxes" class="table table-bordered table-hover transfer-table">
+    <thead>
+        <tr class="common-table-thead">
+            <th>
+                <input ng-click="switchSelectAll()" type="checkbox">
+            </th>
+            <th ng-click="sortBy('model')">设备型号
+                <span class="sortorder" ng-show="propertyName === 'model'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('deviceId')">设备编码
+                <span class="sortorder" ng-show="propertyName === 'deviceId'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('status')">状态
+                <span class="sortorder" ng-show="propertyName === 'status'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('storeDate')">入库时间
+                <span class="sortorder" ng-show="propertyName === 'storeDate'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('buyAt')">购买日期
+                <span class="sortorder" ng-show="propertyName === 'buyAt'" ng-class="{reverse: reverse}"></span>
+            </th>
+
+            <th ng-click="sortBy('buyFrom')">购买单位
+                <span class="sortorder" ng-show="propertyName === 'buyFrom'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('remark')">备注
+                <span class="sortorder" ng-show="propertyName === 'remark'" ng-class="{reverse: reverse}"></span>
+            </th>
+        </tr>
+    </thead>
+    <tbody ng-show="!data.pagination.isLoading">
+        <tr ng-click="pickBox(box)" ng-repeat="box in data.pageData.boxes | orderBy:propertyName:reverse" style="cursor: pointer;">
+            <td ng-click="checkBox($event, $index)">
+                <input ng-model="box.checked" type="checkbox">
+            </td>
+            <td><span ng-bind="box.model"></span></td>
+            <td><span ng-bind="box.deviceId"></span></td>
+            <td><span ng-bind="box.status"></span></td>
+            <td><span ng-bind="getShowDate(box.storeDate)"></span></td>
+            <td><span ng-bind="getShowDate(box.buyAt)"></span></td>
+
+            <td><span ng-bind="box.buyFrom"></span> </td>
+            <td><span ng-bind="box.remark"></span></td>
+        </tr>
+    </tbody>
+    <tbody ng-show="data.pagination.isLoading">
+    <tr>
+        <td colspan="7" class="text-center">加载中 ... </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td id="boxTablePagination" colspan="7" class="text-center" st-pagination="" st-items-by-page="data.pagination.maxSize" st-displayed-pages="data.pageData.displayedPages">
+        </td>
+    </tr>
+    </tfoot>
+</table>
+</div>

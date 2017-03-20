@@ -1,0 +1,56 @@
+<table st-pipe="getHospitals" st-table="data.pageData.hospitals" class="table table-bordered table-hover transfer-table">
+    <thead>
+        <tr class="common-table-thead">
+            <th>
+                <input ng-click="switchSelectAll()" type="checkbox">
+            </th>
+            <th ng-click="sortBy('name')">名称
+                <span class="sortorder" ng-show="propertyName === 'name'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('district')">地区
+                <span class="sortorder" ng-show="propertyName === 'district'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('address')">地址
+                <span class="sortorder" ng-show="propertyName === 'address'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('grade')">等级
+                <span class="sortorder" ng-show="propertyName === 'grade'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <!--<th>联系人</th>-->
+            <!--<th>联系电话</th>-->
+            <th ng-click="sortBy('status')">是否注册
+                <span class="sortorder" ng-show="propertyName === 'status'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('remark')">备注
+                <span class="sortorder" ng-show="propertyName === 'remark'" ng-class="{reverse: reverse}"></span>
+            </th>
+        </tr>
+    </thead>
+    <tbody ng-show="!data.pagination.isLoading">
+        <tr ng-click="pickHospital(hospital)" ng-repeat="hospital in data.pageData.hospitals | orderBy:propertyName:reverse" style="cursor: pointer;">
+            <td ng-click="checkHospital($event, $index)">
+                <input ng-model="hospital.checked" type="checkbox">
+            </td>
+            <td><span ng-bind="hospital.name"></span></td>
+            <td><span ng-bind="hospital.district"></span></td>
+            <td><span ng-bind="hospital.address"></span> </td>
+            <td><span ng-bind="hospital.grade"></span></td>
+            <!--<td><span ng-bind="hospital.contactPerson"></span></td>-->
+            <!--<td><span ng-bind="hospital.contactPhone"></span></td>-->
+            <td><span ng-bind="hospital.status"></span></td>
+            <td><span ng-bind="hospital.remark"></span></td>
+        </tr>
+    </tbody>
+    <tbody ng-show="data.pagination.isLoading">
+    <tr>
+        <td colspan="8" class="text-center">加载中 ... </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td id="hospTablePagination" colspan="8" class="text-center" st-pagination="" st-items-by-page="data.pagination.maxSize" st-displayed-pages="data.pageData.displayedPages">
+        </td>
+    </tr>
+    </tfoot>
+</table>
+</div>

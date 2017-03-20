@@ -1,0 +1,12 @@
+<div>
+	<ul uib-pagination 
+	total-items="data.pageData.totalItems" 
+	ng-model="data.pagination.currentPage" 
+	max-size="data.pagination.maxSize" 
+	previous-text="data.pagination.previousText" 
+	next-text="data.pagination.nextText" 
+	class="pagination-sm" 
+	boundary-link-numbers="true" 
+	ng-change="pageChanged()">
+	</ul>
+</div>

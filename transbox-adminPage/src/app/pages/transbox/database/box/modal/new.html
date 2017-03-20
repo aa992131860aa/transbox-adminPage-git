@@ -1,0 +1,129 @@
+<div class="modal-content">
+    <div class="transbox-modal">
+        <div><span>数据库管理/</span><span class="transbox-blue-color">新增设备</span></div>
+        <hr style="border : 1px dashed #e7e7e7;"/>
+        <div class="row">
+            <!-- first row -->
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 col-md-2 col-lg-2 control-label">设备型号：</label>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <input required="true" ng-model="data.newBox.model" type="text"
+                                   class="form-control" placeholder="">
+                        </div>
+                        <label class="col-sm-2 col-md-2 col-lg-2 control-label">设备编码：</label>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <input required="true" ng-model="data.newBox.deviceId" type="text"
+                                   class="form-control" placeholder="">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- senceod row -->
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+
+                        <label class="col-sm-2 col-md-2 col-lg-2 control-label">入库时间：</label>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <!-- <input required="true" ng-model="data.newFitting.contactPhone" type="text" class="form-control" id="inputEmail3" placeholder="电话"> -->
+                            <input ng-click="toggleNewDatepicker2()"
+                                   uib-datepicker-popup="{{data.newDate2.format}}"
+                                   is-open="data.newDate2.isOpen"
+                                   datepicker-options="data.newDate2.options"
+                                   clear-text="清除"
+                                   current-text="今天"
+                                   close-text="关闭"
+                                   popup-placement="right"
+                                   alt-input-formats="data.newDate2.altInputFormats"
+                                   ng-model="data.newBox.storeDate"
+                                   ng-model-options="data.newDate2.modelOptions"
+                                   type="text"
+                                   class="form-control"
+                                   readonly="readonly"
+                                   placeholder="">
+                        </div>
+
+                        <label class="col-sm-2 col-md-2 col-lg-2 control-label">状态：</label>
+                        <div class="btn-group col-sm-4 col-md-4 col-lg-4" uib-dropdown>
+                            <input ng-model="data.newBox.status" readonly="readonly"
+                                   disabled="disabled" id="newBoxStatus" type="text"
+                                   class="transbox-dropdown-input form-control"
+                                   placeholder="请选择采购状态"/>
+                            <button type="button" uib-dropdown-toggle
+                                    class="transbox-dropdown-btn-right">
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu transbox-dropdown-menu" uib-dropdown-menu
+                                role="menu" aria-labelledby="newBoxStatus">
+                                <li ng-click="pickNewBoxStatus($index,title)"
+                                    ng-repeat="title in data.statusOptions" role="menuitem"><a
+                                        href="">{{title}}</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <!-- third row -->
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+
+                        <label class="col-sm-2 col-md-2 col-lg-2 control-label">购买单位：</label>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <input required="true" ng-model="data.newBox.buyFrom" type="text"
+                                   class="form-control" id="inputEmail3" placeholder="可选">
+                        </div>
+
+                        <label class="col-sm-2 col-md-2 col-lg-2 control-label">购买日期：</label>
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <!-- <input required="true" ng-model="data.newBox.buyAt" type="text" class="form-control" placeholder=""> -->
+                            <input ng-click="toggleNewDatepicker()"
+                                   uib-datepicker-popup="{{data.newDate.format}}"
+                                   is-open="data.newDate.isOpen"
+                                   datepicker-options="data.newDate.options"
+                                   clear-text="清除"
+                                   current-text="今天"
+                                   close-text="关闭"
+                                   popup-placement="left"
+                                   alt-input-formats="data.newDate.altInputFormats"
+                                   ng-model="data.newBox.buyAt"
+                                   ng-model-options="data.newDate.modelOptions"
+                                   type="text"
+                                   class="form-control"
+                                   id="exampleInputtext2"
+                                   readonly="readonly"
+                                   placeholder="可选">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <!-- fourth row -->
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2 col-md-2 col-lg-2 control-label">备注：</label>
+                        <div class="col-sm-10 col-md-10 col-lg-10">
+              <textarea required="true" ng-model="data.newBox.remark" type="text"
+                        class="form-control" placeholder="可选">
+              </textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- btn row -->
+            <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+                <button ng-click="$dismiss()"
+                        class="btn btn-default transbox-btn-size transbox-btn-bordered">取消
+                </button>
+                <button ng-click="createNewBox()" type="submit"
+                        class="btn btn-default transbox-btn-size transbox-btn-blue"
+                        style="margin-left: 40px;">确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

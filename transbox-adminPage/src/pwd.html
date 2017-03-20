@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>修改密码</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900&subset=latin,greek,greek-ext,vietnamese,cyrillic-ext,latin-ext,cyrillic'
+          rel='stylesheet' type='text/css'>
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96x96.png">
+
+    <style scope>
+        body {
+            font-family: 'Microsoft Yahei', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+        }
+
+        .transbox-width {
+            width: 300px !important;
+            margin: auto !important;
+        }
+    </style>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript">
+        //local host
+        var host = 'http://192.168.31.231:1337/transbox/api';
+        //release host
+ //           var host = 'http://www.lifeperfusor.com/transbox/api';
+        var path = '/account/updatePwd';
+        var updatePwd = function () {
+            var pwd1 = $('#inputPwd1').val();
+            var pwd2 = $('#inputPwd2').val();
+            if (pwd1 !== pwd2) {
+                alert('两次输入的密码不一致！');
+                return;
+            }
+            if (pwd1.length < 6) {
+                alert('密码太短！');
+                return;
+            }
+            if (pwd1 === '123456') {
+                alert('新密码不能与初始密码一致！');
+                return;
+            }
+            var accountid = getUrlParam('accountid');
+            if(!accountid){
+                accountid = getCookie('apple');
+            }
+            if (pwd1 && pwd2 && accountid) {
+                var params = {
+                    accountid: accountid,
+                    pwd: pwd1
+                }
+                $.ajax({
+                    url: host + path,
+                    method: 'PUT',
+                    dataType: 'json',
+                    data: params,
+                    success: function (response) {
+                        console.log(response);
+                        if (response.status == 'OK') {
+                            var accountid = response.data.accountid;
+                            var type = response.data.type;
+                            createCookie('apple', accountid, 1);
+                            createCookie('type', type, 1);
+                            //local transbox
+                            window.location.assign('/index.html');
+                            //release transbox
+ //   window.location.assign('/transbox/transbox-adminPage/release/index.html');
+
+                        } else {
+                            alert("修改密码失败，请联系管理员。");
+                        }
+                    },
+                    error: function () {
+                        alert("修改密码失败，请联系管理员。");
+                    }
+                });
+            } else {
+                alert("请输入密码");
+            }
+        }
+        //获取url中的参数
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return unescape(r[2]);
+            return null; //返回参数值
+        }
+        function createCookie(name, value, days) {
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                var expires = "; expires=" + date.toGMTString();
+            }
+            else var expires = "";
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
+        function getCookie(cname)
+        {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0; i<ca.length; i++)
+            {
+                var c = ca[i].trim();
+                if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+            }
+            return "";
+        }
+    </script>
+    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp/serve,src}) styles/auth.css -->
+    <!-- inject:css -->
+    <!-- css files will be automatically insert here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+</head>
+<body>
+<main class="auth-main">
+    <div class="auth-block">
+        <h1>修改密码</h1>
+        <form class="form-horizontal" style="text-align: center;">
+            <div class="">
+                <input type="password" class="form-control transbox-width" id="inputPwd1"
+                       placeholder="新密码">
+
+            </div>
+            <div class="" style="margin-top: 15px;">
+                <input type="password" class="form-control transbox-width" id="inputPwd2"
+                       placeholder="确认新密码">
+            </div>
+            <div class="" style="margin-top: 30px;">
+                <button onclick="updatePwd()" type="button"
+                        class="btn btn-default btn-auth transbox-width">确认
+                </button>
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

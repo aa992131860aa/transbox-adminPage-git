@@ -1,0 +1,83 @@
+<script src="http://hovertree.com/texiao/bootstrap/4/js/city-picker.js"></script>
+
+<div class="modal-content">
+  <div class="transbox-modal">
+    <div><span>数据库管理/</span><span class="transbox-blue-color">新增OPO</span></div>
+    <hr style="border : 1px dashed #e7e7e7;" />
+    <div class="row">
+      <!-- first row -->
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 col-md-2 col-lg-2 control-label">名称：</label>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <input required="true" ng-model="data.selectedOpo.name" type="text" class="form-control" placeholder="名称">
+            </div>
+            <label class="col-sm-2 col-md-2 col-lg-2 control-label">地区：</label>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <!--<input required="true" ng-model="data.selectedOpo.district" type="text" class="form-control" placeholder="地区">-->
+                <div style="position: relative;"><!-- container -->
+                  <input readonly type="text" data-toggle="city-picker" data-simple="true" id="opoCitypickerDetail" ng-model="data.selectedOpo.district">
+                </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- senceod row -->
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 col-md-2 col-lg-2 control-label">等级：</label>
+            <div class="btn-group col-sm-4 col-md-4 col-lg-4" uib-dropdown>
+              <input ng-model="data.selectedOpo.grade" readonly="readonly" disabled="disabled" id="selectedOpoGrade" type="text" class="transbox-dropdown-input form-control" placeholder="请选择OPO等级" />
+              <button type="button" uib-dropdown-toggle class="transbox-dropdown-btn-right">
+              <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu transbox-dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="newHospGrade">
+                <li ng-click="pickDetailOpoGrade($index,title)" ng-repeat="title in data.gradeOptions track by $index" role="menuitem"><a href="">{{title}}</a></li>
+              </ul>
+            </div>
+            <label class="col-sm-2 col-md-2 col-lg-2 control-label">地址：</label>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <input required="true" ng-model="data.selectedOpo.address" type="text" class="form-control" id="inputEmail3" placeholder="地址">
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- third row -->
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 col-md-2 col-lg-2 control-label">联系人：</label>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <input required="true" ng-model="data.selectedOpo.contactPerson" type="text" class="form-control" placeholder="联系人">
+            </div>
+            <label class="col-sm-2 col-md-2 col-lg-2 control-label">电话：</label>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <input required="true" ng-model="data.selectedOpo.contactPhone" type="text" class="form-control" id="inputEmail3" placeholder="电话">
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- fourth row -->
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 col-md-2 col-lg-2 control-label">备注：</label>
+            <div class="col-sm-10 col-md-10 col-lg-10">
+              <textarea required="true" ng-model="data.selectedOpo.remark" type="text" class="form-control" placeholder="备注">
+              </textarea>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- btn row -->
+      <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+        <button ng-click="$dismiss()" class="btn btn-default transbox-btn-size transbox-btn-bordered">取消</button>
+        <button ng-click="saveSelectedOpoInfo()" type="submit" class="btn btn-default transbox-btn-size transbox-btn-blue" style="margin-left: 40px;">保存</button>
+      </div>
+    </div>
+  </div>
+</div>

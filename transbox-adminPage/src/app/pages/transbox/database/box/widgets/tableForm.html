@@ -1,0 +1,23 @@
+<form class="form-inline row">
+  <div class="form-group col-sm-3 col-md-3 col-lg-3">
+    <input ng-model="data.searchOptions.model" type="text" class="form-control" id="exampleInputName2" placeholder="型号">
+  </div>
+  <div class="form-group col-sm-3 col-md-3 col-lg-3">
+    <input ng-model="data.searchOptions.deviceId" type="text" class="form-control" id="exampleInputtext2" placeholder="设备编码">
+  </div>
+  <div class="form-group col-sm-3 col-md-3 col-lg-3">
+    <!-- <input ng-model="data.searchOptions.status" type="text" class="form-control" id="exampleInputEmail2" placeholder="状态"> -->
+    <div class="btn-group col-sm-4 col-md-4 col-lg-4" uib-dropdown style="width: 100%;">
+      <input ng-model="data.searchOptions.status" readonly="readonly" disabled="disabled" id="newBoxStatus" type="text" class="transbox-dropdown-input form-control" placeholder="请选择箱子状态" />
+      <button type="button" uib-dropdown-toggle class="transbox-dropdown-btn-right">
+      <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu transbox-dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="newBoxStatus">
+        <li ng-click="pickSearchStatus($index,title)" ng-repeat="title in data.searchOptions.searchStatusOptions" role="menuitem"><a href="">{{title}}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="form-group col-sm-3 col-md-3 col-lg-3">
+    <button ng-click="searchBoxes()" class="btn transbox-btn-yellow transbox-btn-size">查询</button>
+  </div>
+</form>

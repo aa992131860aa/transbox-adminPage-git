@@ -1,0 +1,381 @@
+.color-yellow {
+  color: #F8B513;
+}
+
+.color-blue {
+  color: #3B9DF2 !important;
+}
+
+.main-content {
+  padding-top: 25%;
+  padding-left: 10%;
+  padding-right: 10%;
+  background: #FFFFFF;
+}
+
+.common-content {
+  padding: 5%;
+  background: #FFFFFF;
+}
+
+.submit-btn {
+  height: 40px;
+  padding: 0;
+  background-color: #379DF2;
+  color: #FFFFFF;
+  border: 0;
+}
+
+.submit-btn:active {
+  background-color: #2e8fe0 !important;
+}
+
+.back-btn-outlined {
+  height: 40px;
+  padding: 0;
+  color: #2e8fe0;
+  background: transparent;
+  border-color: #2E8FE0;
+}
+
+.back-btn-outlined:active {
+  background-color: #2e8fe0 !important;
+}
+
+.span-weight {
+  width: 48% !important;
+  display: inline-block !important;
+  font-size: 14px;
+  color: #333333;
+  margin-bottom: 5px;
+}
+
+.span-weight-float {
+  width: 48% !important;
+  display: inline-block !important;
+  float: right !important;
+  font-size: 14px;
+  color: #333333;
+}
+
+.span-arrow {
+  width: 48% !important;
+  display: inline-block !important;
+  border: 1px solid rgba(0, 0, 0, .2) !important;
+  margin-bottom: 15px !important;
+  border-radius: 3px !important;
+}
+
+.div-arrow {
+  border: 1px solid rgba(0, 0, 0, .2) !important;
+  margin-bottom: 15px !important;
+  border-radius: 3px !important;
+}
+
+.input-arrow {
+  border: 0 !important;
+  margin-bottom: 0 !important;
+  width: calc(100% - 40px) !important;
+}
+
+.img-arrow {
+  width: 40px;
+  height: 40px;
+  float: right;
+  padding: 12px;
+}
+
+.input-arrow-num {
+  border: 0 !important;
+  margin-bottom: 0 !important;
+  width: calc(100% - 80px) !important;
+}
+
+.input-weight {
+  width: 48% !important;
+  height: 42px !important;
+}
+
+.input-weight-float {
+  width: 48% !important;
+  height: 42px !important;
+  float: right !important;
+}
+
+.mui-popover .mui-popover-arrow {
+  display: none;
+}
+
+.mui-popover {
+  left: 0 !important;
+  margin-left: 10% !important;
+  width: 80% !important;
+  top: 30% !important;
+}
+
+.mui-popover .mui-table-view {
+  max-height: 215px;
+}
+
+.num-down {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  font-size: 35px;
+  float: left;
+  text-align: center;
+  padding-top: 7px;
+  color: #A2A2A2;
+}
+
+.num-up {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  font-size: 25px;
+  float: right;
+  text-align: center;
+  padding-top: 9px;
+  color: #A2A2A2;
+}
+
+.pre-div-blue {
+  margin-bottom: 10px;
+  color: #379DF2;
+  text-align: left;
+}
+
+.pre-span-weight {
+  height: 30px;
+  padding: 5px;
+  width: 50% !important;
+  display: inline-block !important;
+  color: #333333;
+}
+
+.pre-span-weight-float {
+  height: 30px;
+  padding: 5px;
+  width: 50% !important;
+  display: inline-block !important;
+  float: right !important;
+  color: #F8B513;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.btn-query {
+  width: 50%;
+  height: 40px;
+  display: inline-block;
+  margin-bottom: 0;
+  border-radius: 0;
+  padding: 0;
+  color: #2e8fe0;
+  background-color: #FFFFFF;
+  border-color: #2E8FE0;
+}
+
+.btn-active {
+  background-color: #2E8FE0 !important;
+  color: #FFFFFF !important;
+}
+
+.onway-morris-content {
+  margin-top: 15px;
+  padding-top: 15px;
+  box-shadow: 0 0 7px 2px rgba(86, 96, 117, 0.1)
+}
+
+.span-left {
+  display: inline-block;
+  width: 33%;
+  float: left;
+  color: #333333;
+}
+
+.span-middle {
+  display: inline-block;
+  width: 33%;
+  color: #333333;
+}
+
+.span-right {
+  display: inline-block;
+  width: 33%;
+  float: right;
+  color: #333333;
+}
+
+.way-span-weight {
+  height: 50px;
+  width: 50% !important;
+  display: inline-block !important;
+  line-height: 50px;
+  color: #333333;
+}
+
+.way-span-weight-float {
+  height: 50px;
+  line-height: 50px;
+  width: 50% !important;
+  text-align: right;
+  display: inline-block !important;
+  float: right !important;
+  color: #333333;
+}
+
+/*item里item*/
+.way-span {
+  height: 50px;
+  width: 25% !important;
+  display: inline-block !important;
+  line-height: 50px;
+  color: #333333;
+  float: left;
+}
+
+.way-span-color {
+  height: 50px;
+  width: 30% !important;
+  display: inline-block !important;
+  line-height: 50px;
+  float: left;
+  color: #3B9DF2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.way-span-color-warning {
+  height: 50px;
+  width: 30% !important;
+  display: inline-block !important;
+  line-height: 50px;
+  float: left;
+  color: red;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.way-span-color-right {
+  height: 50px;
+  width: 20% !important;
+  display: inline-block !important;
+  line-height: 50px;
+  float: left;
+  color: #3B9DF2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.crash-span-weight {
+  height: 50px;
+  width: 50% !important;
+  display: inline-block !important;
+  line-height: 50px;
+  text-align: center;
+  color: #333333;
+}
+
+.crash-span-weight-float {
+  height: 50px;
+  line-height: 50px;
+  width: 50% !important;
+  text-align: center;
+  display: inline-block !important;
+  float: right !important;
+  color: #333333;
+}
+
+/*input height*/
+.re-heigh {
+  height: 50px !important;
+}
+
+/*all black*/
+.re-color {
+  color: #333333;
+}
+
+/*morris 温度，湿度title*/
+.ms-title {
+  color: #666666;
+  padding-left: 5px;
+}
+
+/*query页div*/
+.query-item {
+  margin-top: 20%;
+  margin-bottom: 5px;
+  color: #333333
+}
+
+.query-item-odd {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #333333
+}
+
+/*获取时间*/
+.create-title {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #333333;
+  margin-bottom: 5px;
+}
+
+.create-gettime {
+  border: 1px solid rgba(0, 0, 0, .2);
+  height: 42px;
+  line-height: 40px;
+  padding-left: 15px;
+  border-radius: 3px;
+  color: #333333
+}
+
+/*描述div*/
+.desc-div {
+  font-size: 14px;
+  color: #999999
+}
+
+input {
+  color: #333333 !important;
+}
+
+/*创建时 非等分 input button 满足带箭头高度*/
+.create-h {
+  height: 42px !important;
+}
+
+.temp-color {
+  color: #3B9DF2 !important;
+}
+
+.temp-color-warning {
+  color: red !important;
+}
+
+path {
+  stroke-width: 1 !important;
+}
+
+#fp-nav ul li a.active span, .fp-slidesNav ul li a.active span {
+  background: #2E8FE0 !important; /*活动导航的颜色*/
+}
+
+#fp-nav ul li a span, .fp-slidesNav ul li a span {
+  background: #dddddd !important; /*非活动导航的颜色*/
+  height: 8px !important;
+  width: 8px !important;
+  margin: -4px 0 0 -4px !important;
+}
+
+circle {
+  stroke-width: 0 !important;
+  r: 2 !important;
+}

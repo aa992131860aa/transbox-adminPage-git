@@ -1,0 +1,57 @@
+<form class="form-inline row">
+  <div class="form-group col-sm-3 col-md-3 col-lg-3" style="margin-bottom: 10px;">
+    <input ng-model="data.searchOptions.transferNumber" type="text" class="form-control" id="exampleInputName2" placeholder="转运单号">
+  </div>
+  <div class="form-group col-sm-3 col-md-3 col-lg-3" style="margin-bottom: 10px;">
+    <input ng-model="data.searchOptions.organSegNumber" type="text" class="form-control" id="exampleInputName2" placeholder="器官段号">
+  </div>
+  <div class="form-group col-sm-3 col-md-3 col-lg-3" style="margin-bottom: 10px;">
+    <input ng-model="data.searchOptions.organType" type="text" class="form-control" id="exampleInputName2" placeholder="器官种类">
+  </div>
+  <div class="form-group col-sm-3 col-md-3 col-lg-3" style="margin-bottom: 10px;">
+    <input ng-model="data.searchOptions.transferPersonName" type="text" class="form-control" id="exampleInputName2" placeholder="转运人">
+  </div>
+  <div class="form-group col-sm-3 col-md-3 col-lg-3" style="margin-bottom: 10px;">
+    <input ng-model="data.searchOptions.fromCity" type="text" class="form-control" id="exampleInputName2" placeholder="转运起始地">
+  </div>
+  <div class="form-group col-sm-3 col-md-3 col-lg-3" style="margin-bottom: 10px;">
+    <input ng-model="data.searchOptions.toHospitalName" type="text" class="form-control" id="exampleInputName2" placeholder="转运目的地">
+  </div>
+  <div class="form-group col-sm-3 col-md-3 col-lg-3" style="margin-bottom: 10px;">
+    <input ng-click="toggleBeginDatepicker()" 
+    uib-datepicker-popup="{{data.beginDate.format}}" 
+    is-open="data.beginDate.isOpen" 
+    datepicker-options="data.beginDate.options" 
+    clear-text="清除" 
+    current-text="今天" 
+    close-text="关闭" 
+    alt-input-formats="data.beginDate.altInputFormats" 
+    ng-model="data.searchOptions.beginDate" 
+    ng-model-options="data.beginDate.modelOptions" 
+    type="text" 
+    class="form-control" 
+    id="exampleInputtext2"
+           readonly="readonly"
+    placeholder="起始日期">
+  </div>
+  <div class="form-group col-sm-3 col-md-3 col-lg-3" style="margin-bottom: 10px;">
+    <input ng-click="toggleEndDatepicker()" 
+    uib-datepicker-popup="{{data.endDate.format}}" 
+    is-open="data.endDate.isOpen" 
+    datepicker-options="data.endDate.options" 
+    clear-text="清除" 
+    current-text="今天" 
+    close-text="关闭" 
+    alt-input-formats="data.endDate.altInputFormats" 
+    ng-model="data.searchOptions.endDate" 
+    ng-model-options="data.endDate.modelOptions" 
+    type="text" 
+    class="form-control" 
+    id="exampleInputtext2"
+           readonly="readonly"
+    placeholder="结束日期">
+  </div>
+  <div class="form-group col-sm-3 col-md-3 col-lg-3" style="margin-bottom: 10px;">
+    <button ng-click="searchTransfers()" class="btn transbox-btn-yellow transbox-btn-size">查询</button>
+  </div>
+</form>

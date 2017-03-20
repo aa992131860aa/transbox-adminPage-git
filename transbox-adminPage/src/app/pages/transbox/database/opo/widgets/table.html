@@ -1,0 +1,56 @@
+<table st-pipe="getOpos" st-table="data.pageData.opos" class="table table-bordered table-hover transfer-table">
+    <thead>
+        <tr class="common-table-thead">
+            <th>
+                <input ng-click="switchSelectAll()" type="checkbox">
+            </th>
+            <th ng-click="sortBy('name')">名称
+                <span class="sortorder" ng-show="propertyName === 'name'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('district')">地区
+                <span class="sortorder" ng-show="propertyName === 'district'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('address')">地址
+                <span class="sortorder" ng-show="propertyName === 'address'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('grade')">等级
+                <span class="sortorder" ng-show="propertyName === 'grade'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('contactPerson')">联系人
+                <span class="sortorder" ng-show="propertyName === 'contactPerson'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('contactPhone')">联系电话
+                <span class="sortorder" ng-show="propertyName === 'contactPhone'" ng-class="{reverse: reverse}"></span>
+            </th>
+            <th ng-click="sortBy('remark')">备注
+                <span class="sortorder" ng-show="propertyName === 'remark'" ng-class="{reverse: reverse}"></span>
+            </th>
+        </tr>
+    </thead>
+    <tbody ng-show="!data.pagination.isLoading">
+        <tr ng-click="pickOpo(opo)" ng-repeat="opo in data.pageData.opos | orderBy:propertyName:reverse" style="cursor: pointer;">
+            <td ng-click="checkOpo($event, $index)">
+                <input ng-model="opo.checked" type="checkbox">
+            </td>
+            <td><span ng-bind="opo.name"></span></td>
+            <td><span ng-bind="opo.district"></span></td>
+            <td><span ng-bind="opo.address"></span> </td>
+            <td><span ng-bind="opo.grade"></span></td>
+            <td><span ng-bind="opo.contactPerson"></span></td>
+            <td><span ng-bind="opo.contactPhone"></span></td>
+            <td><span ng-bind="opo.remark"></span></td>
+        </tr>
+    </tbody>
+    <tbody ng-show="data.pagination.isLoading">
+    <tr>
+        <td colspan="8" class="text-center">加载中 ... </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td id="opoTablePagination" colspan="8" class="text-center" st-pagination="" st-items-by-page="data.pagination.maxSize" st-displayed-pages="data.pageData.displayedPages">
+        </td>
+    </tr>
+    </tfoot>
+</table>
+</div>

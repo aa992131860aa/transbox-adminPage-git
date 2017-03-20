@@ -1,0 +1,148 @@
+<script src="http://hovertree.com/texiao/bootstrap/4/js/city-picker.js"></script>
+
+<div class="modal-content">
+  <div class="transbox-modal">
+    <div><span>数据库管理/</span><span class="transbox-blue-color">医院管理详情</span></div>
+    <hr style="border : 1px dashed #e7e7e7;" />
+    <div class="row">
+      <!-- first row -->
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 col-md-2 col-lg-2 control-label">医院名称：</label>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <input required="true" ng-model="data.selectedHospital.name" type="text" class="form-control" placeholder="医院名称">
+            </div>
+            <label class="col-sm-2 col-md-2 col-lg-2 control-label">账号：</label>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <input required="true" ng-model="data.selectedHospital.accountInfo.username" type="text" class="form-control" placeholder="账号">
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- senceod row -->
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 col-md-2 col-lg-2 control-label">等级：</label>
+            <div class="btn-group col-sm-4 col-md-4 col-lg-4" uib-dropdown>
+              <input ng-model="data.selectedHospital.grade" readonly="readonly" disabled="disabled" id="detailHospGrade" type="text" class="transbox-dropdown-input form-control" />
+              <button type="button" uib-dropdown-toggle class="transbox-dropdown-btn-right">
+              <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu transbox-dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="detailHospGrade">
+                <li ng-click="pickDetailHospGrade($index,title)" ng-repeat="title in data.keyword.hospital.grade" role="menuitem"><a href="">{{title}}</a></li>
+              </ul>
+            </div>
+            <label class="col-sm-2 col-md-2 col-lg-2 control-label">地区：</label>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <!--<input required="true" ng-model="data.selectedHospital.district" type="text" class="form-control" id="inputEmail3" placeholder="地区">-->
+
+              <div style="position: relative;"><!-- container -->
+                <input readonly type="text" data-toggle="city-picker" data-simple="true" id="hosCitypickerDetail" ng-model="data.selectedHospital.district">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- third row -->
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 col-md-2 col-lg-2 control-label">状态：</label>
+            <div class="btn-group col-sm-4 col-md-4 col-lg-4" uib-dropdown>
+              <input readonly="readonly" disabled="disabled" id="detailHospStatus" type="text" class="transbox-dropdown-input form-control" />
+              <button type="button" uib-dropdown-toggle class="transbox-dropdown-btn-right">
+              <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu transbox-dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="detailHospStatus">
+                <li ng-click="pickDetailHospStatus($index,title)" ng-repeat="title in data.keyword.hospital.status" role="menuitem"><a href="">{{title}}</a></li>
+              </ul>
+            </div>
+            <label class="col-sm-2 col-md-2 col-lg-2 control-label">地址：</label>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <input required="true" ng-model="data.selectedHospital.address" type="text" class="form-control" id="inputEmail3" placeholder="请填写详细地址">
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- all transfer persons -->
+      <ul class="list-unstyled" style="">
+        <li ng-repeat="person in data.selectedHospital.transferPersons">
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2 col-md-2 col-lg-2 control-label">对应器官：</label>
+                <div class="col-sm-2 col-md-2 col-lg-2">
+                  <input ng-model="person.organType" type="text" class="form-control" placeholder="对应器官">
+                </div>
+                <label class="col-sm-1 col-md-1 col-lg-1 control-label" style="padding: 0;">联系人：</label>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                  <input ng-model="person.name" type="text" class="form-control" placeholder="联系人">
+                </div>
+                <label class="col-sm-1 col-md-1 col-lg-1 control-label" style="padding: 0;">联系电话：</label>
+                <div class="col-sm-3 col-md-3 col-lg-3">
+                  <input ng-model="person.phone" type="text" class="form-control" placeholder="联系电话">
+                </div>
+              </div>
+            </form>
+          </div>
+        </li>
+        <li>
+          <div class="col-md-12">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-2" style="margin-bottom: 20px;">
+              <a ng-click="detailHospAddPerson()" href="">+添加</a>
+            </div>
+            <div ng-show="data.selectedHospital.transferPersons.length > 1" class="col-sm-1 col-md-1 col-lg-1" style="margin-bottom: 20px;">
+              <a ng-click="detailHospRemovePerson()" href="">删除</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <!-- last row -->
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <form class="form-horizontal">
+          <div class="form-group">
+              <label class="col-sm-2 col-md-2 col-lg-2 control-label">对应箱子：</label>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <ul class="list-unstyled">
+                <li ng-repeat="box in data.selectedHospital.boxes track by $index" ng-init="detailBoxIndex=$index">
+                  <div class="row">
+                    <div class="btn-group col-sm-12 col-md-12 col-lg-12" uib-dropdown on-toggle="detailHospBoxOnToggle(open)" style="margin-bottom: 15px;">
+                      <input ng-model="box.model" readonly="readonly" disabled="disabled" id="detailHospGrade" type="text" class="transbox-dropdown-input form-control" placeholder="请选择箱子" />
+                      <button type="button" uib-dropdown-toggle="detailHospBoxOnToggle" class="transbox-dropdown-btn-right">
+                      <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu transbox-dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="detailHospGrade">
+                        <li ng-click="pickDetailHospBox(detailBoxIndex, box)" ng-repeat="box in data.showBoxOptions" ng-init="optionIndex=$index" role="menuitem"><a href="">{{box.model}}</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                      <a ng-click="detailHospAddBox()" href="">+添加</a>
+                      <a ng-show="data.selectedHospital.boxes.length > 1" ng-click="detailHospRemoveBox()" href="" style="float: right;">删除</a>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <label class="col-sm-2 col-md-2 col-lg-2 control-label">备注：</label>
+            <div class="col-sm-4 col-md-4 col-lg-4">
+              <textarea ng-model="data.selectedHospital.remark" type="text" class="form-control" placeholder="备注" />
+            </div>
+          </div>
+        </form>   
+      </div>
+
+      <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+        <button ng-click="$dismiss()" class="btn btn-default transbox-btn-size">取消</button>
+        <button ng-click="saveSelectedHospInfo()" type="submit" class="btn btn-default transbox-btn-size" style="margin-left: 40px;">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
