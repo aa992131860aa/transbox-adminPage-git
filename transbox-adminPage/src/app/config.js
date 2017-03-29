@@ -8,6 +8,7 @@
         return {
             apiPath: {
                 transfers: '/transfers',
+                transfersSql: '/transfersSql',
                 hospitals: '/hospitals',
                 hospital: '/hospital',
                 opos: '/opos',

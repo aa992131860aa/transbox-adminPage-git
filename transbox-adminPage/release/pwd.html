@@ -9,7 +9,7 @@
         }
     </style><script src="../bower_components/jquery/dist/jquery.js"></script><script type="text/javascript">
         //local host
-        var host = 'http://192.168.31.231:1337/transbox/api';
+        var host = 'http://192.168.1.115:1337/transbox/api';
         //release host
  //           var host = 'http://www.lifeperfusor.com/transbox/api';
         var path = '/account/updatePwd';
@@ -50,9 +50,9 @@
                             createCookie('apple', accountid, 1);
                             createCookie('type', type, 1);
                             //local transbox
-                            window.location.assign('/index.html');
+                            //window.location.assign('/index.html');
                             //release transbox
- 、、   window.location.assign('/transbox/transbox-adminPage/release/index.html');
+    window.location.assign('/transbox-adminPage/release/index.html');
 
                         } else {
                             alert("修改密码失败，请联系管理员。");
@@ -94,4 +94,4 @@
             }
             return "";
         }
-    </script><link rel="stylesheet" href="styles/vendor-f0b191d225.css"><link rel="stylesheet" href="styles/auth-cb93004857.css"></head><body><main class="auth-main"><div class="auth-block"><h1>修改密码</h1><form class="form-horizontal" style="text-align: center;"><div class=""><input type="password" class="form-control transbox-width" id="inputPwd1" placeholder="新密码"></div><div class="" style="margin-top: 15px;"><input type="password" class="form-control transbox-width" id="inputPwd2" placeholder="确认新密码"></div><div class="" style="margin-top: 30px;"><button onclick="updatePwd()" type="button" class="btn btn-default btn-auth transbox-width">确认</button></div></form></div></main></body></html>
+    </script><link rel="stylesheet" href="styles/vendor-42b06dd2f4.css"><link rel="stylesheet" href="styles/auth-cb93004857.css"></head><body><main class="auth-main"><div class="auth-block"><h1>修改密码</h1><form class="form-horizontal" style="text-align: center;"><div class=""><input type="password" class="form-control transbox-width" id="inputPwd1" placeholder="新密码"></div><div class="" style="margin-top: 15px;"><input type="password" class="form-control transbox-width" id="inputPwd2" placeholder="确认新密码"></div><div class="" style="margin-top: 30px;"><button onclick="updatePwd()" type="button" class="btn btn-default btn-auth transbox-width">确认</button></div></form></div></main></body></html>

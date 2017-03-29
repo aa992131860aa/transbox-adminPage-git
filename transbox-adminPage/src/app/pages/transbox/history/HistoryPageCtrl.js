@@ -153,6 +153,87 @@
             return Config.getDateStringFromObject(obj);
         }
 
+
+        //get all transfers that status is not 'done'
+        $scope.getTransfersSql = function (tableState) {
+            if (!tableState) {
+                return;
+            }
+
+            $scope.data.selectAll = false;
+            $scope.data.pagination.isLoading = true;
+            var pagination = tableState.pagination;
+            var start = pagination.start || 0;
+            // This is NOT the page number, but the index of item in the list that you want to use to display the table.
+            var number = pagination.number || $scope.data.pagination.maxSize;
+            // Number of entries showed per page.
+
+            var params = {
+                start: start,
+                number: number,
+                type: 'done'
+            }
+
+            if (Config.userInfo.type === 'hospital' && Config.userInfo.hospitalInfo) {
+                params.hospitalid = Config.userInfo.hospitalInfo.hospitalid;
+            }
+
+            if (!$.isEmptyObject($scope.data.searchOptions.transferNumber)) {
+                params.transferNumber = $scope.data.searchOptions.transferNumber
+            }
+
+            if (!$.isEmptyObject($scope.data.searchOptions.organSegNumber)) {
+                params.organSegNumber = $scope.data.searchOptions.organSegNumber
+            }
+
+            if (!$.isEmptyObject($scope.data.searchOptions.organType)) {
+                params.organType = $scope.data.searchOptions.organType
+            }
+
+            if (!$.isEmptyObject($scope.data.searchOptions.transferPersonName)) {
+                params.transferPersonName = $scope.data.searchOptions.transferPersonName
+            }
+
+            if (!$.isEmptyObject($scope.data.searchOptions.fromCity)) {
+                params.fromCity = $scope.data.searchOptions.fromCity
+            }
+
+            if (!$.isEmptyObject($scope.data.searchOptions.toHospitalName)) {
+                params.toHospitalName = $scope.data.searchOptions.toHospitalName
+            }
+
+            // var beginDate = ;
+            // if (Config.getFormatStringFromDate(beginDate)) {
+            //     params.beginDate = Config.getFormatStringFromDate(beginDate);
+            // }
+            //
+            // var endDate = $scope.data.searchOptions.endDate;
+            // if (Config.getFormatStringFromDate(endDate)) {
+            //     params.endDate = Config.getFormatStringFromDate(endDate);
+            // }
+
+            if ($scope.data.searchOptions.beginDate) {
+                params.beginDate = moment($scope.data.searchOptions.beginDate).format('YYYY-MM-DD');
+            }
+
+            if ($scope.data.searchOptions.endDate) {
+                params.endDate = moment($scope.data.searchOptions.endDate).format('YYYY-MM-DD');
+            }
+
+
+            Http.get(Config.apiPath.transfersSql, params).then(function (data) {
+                $scope.data.pageData = data;
+                tableState.pagination.numberOfPages = data.numberOfPages;
+                $scope.data.pageData.displayedPages = Math.ceil(parseFloat(data.totalItems) / parseInt(data.numberOfPages));
+                $scope.data.pageData.tableState = tableState;
+                $scope.data.pagination.isLoading = false;
+
+            }, function (msg) {
+                console.log(msg);
+                $scope.data.pagination.isLoading = false;
+            });
+        }
+
         //get all transfers that status is not 'done'
         $scope.getTransfers = function (tableState) {
             if (!tableState) {
@@ -370,161 +451,7 @@
         }
 
 
-        // // =================== data begin ====================
-        // // $scope.data = {
-        // //     pageState: 1,
-        // //     humidity: {},    // 统计湿度max/min
-        // //     temperature: {}, // 统计温度max/min
-        // //     openData: [],
-        // //     collisionData: [],
-        // //     crashData: []   //总的crash 数据
-        // // };
-        // // morris
-        // $scope.info = {};
-        // $scope.lineModerationData = [];
-        // $scope.lineData = [];
-        // $scope.colors = ["#379DF2", "#F8B513"];
-        // $scope.initDate = function (x) {
-        //     var date = new Date(x);
-        //     var m = date.getMonth() + 1;
-        //     m = m < 10 ? ('0' + m) : m;
-        //     var d = date.getDate();
-        //     d = d < 10 ? ('0' + d) : d;
-        //     var h = date.getHours();
-        //     var minute = date.getMinutes();
-        //     minute = minute < 10 ? ('0' + minute) : minute;
-        //     return m + '-' + d + ' ' + h + ':' + minute;
-        // };
-        //
-        // // page data
-        // $scope.getCrashInfo = function () {
-        //     var p1 = {
-        //         transferid: $scope.info.transferid,
-        //         type: "open"
-        //     };
-        //
-        //     Http.get("/records2", p1).then(function (suc) {
-        //         $scope.data.openData = suc;
-        //         $scope.getCollisionData();
-        //     }, function (fail) {
-        //
-        //     });
-        // };
-        // $scope.getCollisionData = function () {
-        //     var p2 = {
-        //         transferid: $scope.info.transferid,
-        //         type: "collision"
-        //     };
-        //
-        //     Http.get("/records2", p2).then(function (suc) {
-        //         // init数组
-        //         $scope.data.crashData = [];
-        //
-        //         $scope.data.collisionData = suc;
-        //         var oSize = $scope.data.openData.length;
-        //         var cSize = $scope.data.collisionData.length;
-        //         if (oSize > 0 || cSize > 0) {
-        //             var size = oSize > cSize ? oSize : cSize;
-        //             for (var i = 0; i < size; i++) {
-        //                 $scope.data.crashData.push({
-        //                     oInfo: $scope.data.openData[i] ? $scope.data.openData[i] : '--',
-        //                     cInfo: $scope.data.collisionData[i] ? $scope.data.collisionData[i] : '--'
-        //                 })
-        //             }
-        //         } else {
-        //             $scope.data.crashData.push({
-        //                 oInfo: '--',
-        //                 cInfo: '--'
-        //             })
-        //         }
-        //
-        //     }, function (fail) {
-        //
-        //     });
-        // };
-        // $scope.initData = function () {
-        //     $scope.info = $scope.data.selectedTransfer;
-        //
-        //     console.log("modelInfo：\n" + JSON.stringify($scope.data.selectedTransfer));
-        //
-        //
-        //     if ($scope.info.records.length < 1) {
-        //         return;
-        //     }
-        //
-        //     $scope.getCrashInfo();
-        //
-        //     var data = [];
-        //     var humidity = [];
-        //     for (var i = 0; i < $scope.info.records.length; i++) {
-        //         var temp = $scope.info.records[i];
-        //         if (temp.humidity) {
-        //             humidity.push(parseInt(temp.humidity));
-        //             data.push({
-        //                 y: temp.recordAt,
-        //                 a: temp.humidity
-        //             })
-        //         }
-        //     }
-        //     $scope.lineModerationData = data;
-        //     if (humidity) {
-        //         $scope.data.humidity.max = Common.arrMaxNum2(humidity) + "%";
-        //         $scope.data.humidity.min = Common.arrMinNum2(humidity) + "%";
-        //         $scope.data.humidity.avg = Common.arrAverageNum2(humidity) + "%";
-        //     }
-        //
-        //     // 温度
-        //     var tData = [];
-        //     var temperature = [];
-        //     for (var j = 0; j < $scope.info.records.length; j++) {
-        //         var item = $scope.info.records[j];
-        //         if (item.temperature && item.avgTemperature) {
-        //             temperature.push(parseFloat(item.temperature));
-        //             tData.push({
-        //                 y: item.recordAt,
-        //                 a: item.temperature,
-        //                 b: item.avgTemperature
-        //             })
-        //         }
-        //     }
-        //     $scope.lineData = tData;
-        //     if (temperature) {
-        //         $scope.data.temperature.max = Common.arrMaxNum2(temperature) + "℃";
-        //         $scope.data.temperature.min = Common.arrMinNum2(temperature) + "℃";
-        //     }
-        //
-        //     // 开始时间
-        //     $scope.info.startAtShow = $scope.info.startAt.substring(5, 16);
-        //     // 获取器官时间
-        //     $scope.info.getOrganAtShow = $scope.info.getOrganAt.substring(0, 16);
-        //
-        // };
-        //
-        // // fullPage
-        // $scope.mainOptions = {
-        //     sectionsColor: ['#f0ad4e', '#2E8FE0', '#f0ad4e'],
-        //     navigation: true,
-        //     navigationPosition: 'right',
-        //     scrollingSpeed: 1000
-        // };
-        //
-        // // click
-        // $scope.viewBaseInfo = function () {
-        //     $scope.data.pageState = 1;
-        //     $('#base').addClass('btn-active');
-        //     $('#trans').removeClass('btn-active');
-        // };
-        //
-        // $scope.viewTransInfo = function () {
-        //     $scope.data.pageState = 2;
-        //     $('#trans').addClass('btn-active');
-        //     $('#base').removeClass('btn-active');
-        // };
-        //
-        // var script = document.createElement('script');
-        // script.src = "http://webapi.amap.com/maps?v=1.3&key=6178b4ecd30a43f661ad2abf15f35595";
-        // document.head.appendChild(script);
-        // // =================== data end ======================
+
 
         $scope.exportTransfers = function () {
             var transferIds = [];

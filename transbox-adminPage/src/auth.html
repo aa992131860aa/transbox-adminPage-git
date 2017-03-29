@@ -24,7 +24,7 @@
     <script src="http://oba97lyy4.bkt.clouddn.com/jquery-2.2.2.js"></script>
     <script type="text/javascript">
     //local host
-    var host = 'http://192.168.31.231:1337/transbox/api';
+    var host = 'http://192.168.1.115:1337/transbox/api';
     //release host
     // var host = 'http://www.lifeperfusor.com/transbox/api';
     var path = '/account/login';
@@ -42,16 +42,16 @@
     var type = response.data.type;
     if (pwd === '123456') {
     // local transbox
-    window.location.assign('/pwd.html?accountid=' + accountid);
+    //window.location.assign('/pwd.html?accountid=' + accountid);
     //release transbox
-//     window.location.assign('/transbox/transbox-adminPage/src/pwd.html?accountid=' + accountid);
+     window.location.assign('/transbox-adminPage/src/pwd.html?accountid=' + accountid);
     } else {
     createCookie('apple', accountid, 1);
     createCookie('type', type, 1);
     // local transbox
-    window.location.assign('/index.html');
+    //window.location.assign('/index.html');
     //release transbox
- //    window.location.assign('/transbox/transbox-adminPage/release/index.html');
+     window.location.assign('/transbox-adminPage/release/index.html');
     }
     
     }else {

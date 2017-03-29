@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script src="https://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <input type="text" ng-model="firstName">
+        <input type="text" ng-model="lastName">
+        {{firstName + lastName}}
+        <button ng-click="clicks()">click me</button>
+    </div>
+    <script>
+        var app = angular.module('myApp',[]);
+        app.controller('myCtrl',function($scope){
+            $scope.firstName = "john";
+            $scope.lastName = "Doe";
+            $scope.clicks= function(){
+                $scope.firstName = 'click me'
+            }
+        });
+    </script>
+</body>
+</html>

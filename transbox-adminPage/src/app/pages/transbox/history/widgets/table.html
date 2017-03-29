@@ -1,4 +1,4 @@
-<table st-pipe="getTransfers" st-table="data.pageData.transfers" class="table table-bordered table-hover transfer-table">
+<table st-pipe="getTransfersSql" st-table="data.pageData.transfers" class="table table-bordered table-hover transfer-table">
     <thead>
         <tr class="common-table-thead">
             <th>
@@ -51,12 +51,12 @@
     </tbody>
     <tbody ng-show="data.pagination.isLoading">
     <tr>
-        <td colspan="9" class="text-center">加载中 ... </td>
+        <td colspan="10" class="text-center">加载中 ... </td>
     </tr>
     </tbody>
     <tfoot>
     <tr>
-        <td id="transferTablePagination" colspan="9" class="text-center" st-pagination="" st-items-by-page="data.pagination.maxSize" st-displayed-pages="data.pageData.displayedPages">
+        <td id="transferTablePagination" colspan="10" class="text-center" st-pagination="" st-items-by-page="data.pagination.maxSize" st-displayed-pages="data.pageData.displayedPages">
         </td>
     </tr>
     </tfoot>

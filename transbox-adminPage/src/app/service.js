@@ -72,7 +72,7 @@
 
 	function http($http, $rootScope, Utils) {
 		//local host
-		 var host = "http://192.168.31.231:1337/transbox/api";
+		 var host = "http://192.168.1.115:1337/transbox/api";
 		//release host
 		//var host = "http://www.lifeperfusor.com/transbox/api";
 
